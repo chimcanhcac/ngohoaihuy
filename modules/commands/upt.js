@@ -2,7 +2,7 @@ module.exports.config = {
 	name:"upt",
 	version: "1.0.0",
 	hasPermssion: 2,
-	credits: "JRT",
+	credits: "chim",
 	description: "Random ảnh theo api - uptime",
 	commandCategory: "Hệ thống admin-bot",
 	cooldowns: 3
@@ -23,11 +23,11 @@ const time = process.uptime(),
 		seconds = Math.floor(time % 60);
 	const pidusage = await global.nodemodule["pidusage"](process.pid);
 	const timeStart = Date.now();
-	axios.get('https://api.vangbanlanhat.tk/image?type=boy').then(res => {
+	axios.get('https://media3.giphy.com/media/DlAKiO46ALu1pQkXU7/giphy.gif?cid=6c09b95271aff5fa5bc9280f10655c1837e5f809328e474b&rid=giphy.gif&ct=g').then(res => {
 	let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
 	let callback = function () {
 					api.sendMessage({
-                                                body: `Thời gian hoạt động của BOT là ${hours} giờ ${minutes} phút ${seconds} giây <3.\n\n❯ Tổng người dùng: ${global.data.allUserID.length}\n❯ Tổng nhóm: ${global.data.allThreadID.length}\n❯ Cpu đang sử dụng: ${pidusage.cpu.toFixed(1)}\n❯ Ram đang sử dụng: ${byte2mb(pidusage.memory)}\n❯ Ping: ${Date.now() - timeStart}ms\nCác bạn nhớ tránh để spam bot đấy <3\nBot made by JRT ✔`,
+                                                body: `Thời gian hoạt động của BOT là ${hours} giờ ${minutes} phút ${seconds} giây <3.\n\n❯ Tổng người dùng: ${global.data.allUserID.length}\n❯ Tổng nhóm: ${global.data.allThreadID.length}\n❯ Cpu đang sử dụng: ${pidusage.cpu.toFixed(1)}\n❯ Ram đang sử dụng: ${byte2mb(pidusage.memory)}\n❯ Ping: ${Date.now() - timeStart}ms\ndell spam bot nhak may thg lz <(") \nQuạt quạt
 						attachment: fs.createReadStream(__dirname + `/cache/anh.${ext}`)
 					}, event.threadID, () => fs.unlinkSync(__dirname + `/cache/anh.${ext}`), event.messageID);
 				};

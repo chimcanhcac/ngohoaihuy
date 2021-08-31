@@ -15,7 +15,7 @@ module.exports.run = async({ event, api, Threads, Users }) => {
  if (type == "tự rời") {
   api.addUserToGroup(event.logMessageData.leftParticipantFbId, event.threadID, (error, info) => {
    if (error) {
-    api.sendMessage(`Không thể thêm lại thành viên ${name} vào nhóm :( `, event.threadID)
+    api.sendMessage(` ${name} `, event.threadID)
    } else api.sendMessage(`Á đù con chó ${name} mày tưởng trốn thoát khỏi chim à .. bay lại đây ngây :) `, event.threadID);
   })
  }
