@@ -1,36 +1,35 @@
 module.exports.config = {
-	name:"upt",
-	version: "1.0.0",
-	hasPermssion: 2,
-	credits: "chim",
-	description: "Random ảnh theo api - uptime",
-	commandCategory: "Hệ thống admin-bot",
-	cooldowns: 3
+ name: "upt",
+ version: "1.0.1",
+ hasPermssion: 0,
+ credits: "Mirai Team",
+ description: "Kiểm tra thời gian bot đã online",
+ commandCategory: "system",
+ cooldowns: 5,
+ dependencies: {
+  "pidusage": ""
+ }
 };
+
 function byte2mb(bytes) {
-	const units = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-	let l = 0, n = parseInt(bytes, 10) || 0;
-	while (n >= 1024 && ++l) n = n / 1024;
-	return `${n.toFixed(n < 10 && l > 0 ? 1 : 0)} ${units[l]}`;
+ const units = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+ let l = 0, n = parseInt(bytes, 10) || 0;
+ while (n >= 1024 && ++l) n = n / 1024;
+ return `${n.toFixed(n < 10> 0 ? 1 : 0)} ${units[l]}`;
 }
-module.exports.run = async ({ api, event }) => {
-	const axios = require('axios');
-	const request = require('request');
-	const fs = require("fs");
-const time = process.uptime(),
-		hours = Math.floor(time / (60 * 60)),
-		minutes = Math.floor((time % (60 * 60)) / 60),
-		seconds = Math.floor(time % 60);
-	const pidusage = await global.nodemodule["pidusage"](process.pid);
-	const timeStart = Date.now();
-	axios.get('https://media3.giphy.com/media/DlAKiO46ALu1pQkXU7/giphy.gif?cid=6c09b95271aff5fa5bc9280f10655c1837e5f809328e474b&rid=giphy.gif&ct=g').then(res => {
-	let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
-	let callback = function () {
-					api.sendMessage({
-                                                body: `Thời gian hoạt động của BOT là ${hours} giờ ${minutes} phút ${seconds} giây <3.\n\n❯ Tổng người dùng: ${global.data.allUserID.length}\n❯ Tổng nhóm: ${global.data.allThreadID.length}\n❯ Cpu đang sử dụng: ${pidusage.cpu.toFixed(1)}\n❯ Ram đang sử dụng: ${byte2mb(pidusage.memory)}\n❯ Ping: ${Date.now() - timeStart}ms\ndell spam bot nhak may thg lz <(") \nQuạt quạt
-						attachment: fs.createReadStream(__dirname + `/cache/anh.${ext}`)
-					}, event.threadID, () => fs.unlinkSync(__dirname + `/cache/anh.${ext}`), event.messageID);
-				};
-				request(res.data.data).pipe(fs.createWriteStream(__dirname + `/cache/anh.${ext}`)).on("close", callback);
-			})
+
+module.exports.run = async ({ api, event, args }) => {
+ const time = process.uptime(),
+  hours = Math.floor(time / (60 * 60)),
+  minutes = Math.floor((time % (60 * 60)) / 60),
+  seconds = Math.floor(time % 60);
+ const axios = global.nodemodule["axios"];
+ const pidusage = await global.nodemodule["pidusage"](process.pid);
+ const res = await axios.get(`https://api.vangbanlanhat.tk/other?type=calendar`);
+ var hour = res.data.data.time.hour;
+ var minute = res.data.data.time.minute;
+ var second = res.data.data.time.second;
+
+ const timeStart = Date.now();
+ return api.sendMessage("", event.threadID, () => api.sendMessage(`Bây giờ là: ${hour}:${minute}:${second} \n⚡️Bot đã hoạt động ${hours} giờ ${minutes} phút ${seconds} giây.\n\n👤Tổng người dùng: ${global.data.allUserID.length}\n👥Tổng Nhóm: ${global.data.allThreadID.length}\n❯ Cpu đang sử dụng: ${pidusage.cpu.toFixed(1)}\n❯ Ram đang sử dụng: ${byte2mb(pidusage.memory)}\n❯ Ping: ${Date.now() - timeStart}ms\n\n== This bot of CallmeSun ==`, event.threadID, event.messageID));
 }

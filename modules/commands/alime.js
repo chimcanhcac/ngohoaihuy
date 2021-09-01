@@ -1,4 +1,4 @@
-/**
+﻿/**
 * @author ProCoderMew
 * @warn Do not edit code or edit credits
 */
@@ -7,9 +7,9 @@ module.exports.config = {
     name: "alime",
     version: "1.1.2",
     hasPermssion: 0,
-    credits: "JRT",
+    credits: "ProCoderMew",
     description: "alime sfw và cả alime nsfw :)",
-    commandCategory: "NSFW",
+    commandCategory: "nsfw",
     usages: "[tag]",
     cooldowns: 5,
     dependencies: {
