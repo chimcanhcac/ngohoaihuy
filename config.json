@@ -11,7 +11,7 @@
     "PASSWORD": "",
     "OTPKEY": "",
     "BOTNAME": "bot-chim",
-    "PREFIX": ",",
+    "PREFIX": "!",
     "ADMINBOT": [
         "100029848123405",
         "ADMIN1"
@@ -67,7 +67,7 @@
         "bitlyAPI": ""
     },
     "sim": {
-        "APIKEY": "MEWbmhkanJ0MjAwMztkYW5nejEyMzQ1Njc4OXpAZ21haWwuY29t"
+        "APIKEY": "Meew_beQpcJHy5r1v2qhBSkunhEUHMISYMP"
     },
     "sing": {
         "YOUTUBE_API": "AIzaSyC8_pk1Z0kfsPkKfeZZWw140Ko_k2p_kVM"
@@ -97,5 +97,9 @@
     },
     "log": {
         "enable": true
+    },
+    "help": {
+        "autoUnsend": true,
+        "delayUnsend": 30
     }
 }
