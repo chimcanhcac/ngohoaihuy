@@ -50,7 +50,7 @@ module.exports.handleEvent = async function({ api, event, Currencies, Users, get
 		if (existsSync(__dirname + `/cache/rankup/${event.threadID}.gif`)) arrayContent = { body: messsage, attachment: createReadStream(__dirname + `/cache/rankup/${event.threadID}.gif`), mentions: [{ tag: name, id: senderID }] };
 		else arrayContent = { body: messsage, mentions: [{ tag: name, id: senderID }] };
 		const moduleName = this.config.name;
-		api.sendMessage(arrayContent, threadID, async function (error, info){
+		api.sendMessage(arrayContent, async function (error, info){
 			if (global.configModule[moduleName].autoUnsend) {
 				await new Promise(resolve => setTimeout(resolve, global.configModule[moduleName].unsendMessageAfter * 1000));
 				return api.unsendMessage(info.messageID);

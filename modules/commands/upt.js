@@ -31,5 +31,6 @@ module.exports.run = async ({ api, event, args }) => {
  var second = res.data.data.time.second;
 
  const timeStart = Date.now();
- return api.sendMessage("", event.threadID, () => api.sendMessage(`Bây giờ là: ${hour}:${minute}:${second} \n⚡️Bot đã hoạt động ${hours} giờ ${minutes} phút ${seconds} giây.\n\n👤Tổng người dùng: ${global.data.allUserID.length}\n👥Tổng Nhóm: ${global.data.allThreadID.length}\n❯ Cpu đang sử dụng: ${pidusage.cpu.toFixed(1)}\n❯ Ram đang sử dụng: ${byte2mb(pidusage.memory)}\n❯ Ping: ${Date.now() - timeStart}ms\n\n== This bot of CallmeSun ==`, event.threadID, event.messageID));
+ return api.sendMessage("", event.threadID, () => api.sendMessage(`Bây giờ là: ${hour}:${minute}:${second} \n⚡️Bot đã hoạt động ${hours} giờ ${minutes} phút ${seconds} giây.\n\n👤Tổng người dùng: ${global.data.allUserID.length}\n👥Tổng Nhóm: ${global.data.allThreadID.length}\n❯ Cpu đang sử dụng: ${pidusage.cpu.toFixed(1)}\n❯ Ram đang sử dụng: ${byte2mb(pidusage.memory)}\n❯ Ping: ${Date.now() - timeStart}ms\n\n
+ <(") Ngô Hoài Huy`, event.threadID, event.messageID));
 }

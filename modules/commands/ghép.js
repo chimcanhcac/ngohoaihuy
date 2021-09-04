@@ -1,46 +1,97 @@
-﻿ module.exports.config = {
-  name: "ghép",
-  version: "1.0.0", 
-  hasPermssion: 0,
-  credits: "quên, fix by Jukie~",
-  description: "Ghép đôi",
-  commandCategory: "game", 
-  usages: "ghép", 
-  cooldowns: 10,
-  dependencies: [] 
-};
-module.exports.run = async function({ api, event, Users, Currencies }) {
-        const axios = global.nodemodule["axios"];
-        const fs = global.nodemodule["fs-extra"];
-        var data = await Currencies.getData(event.senderID);
-        var money = data.money
-        if(money = 0, money >0) api.sendMessage("⚡️Nghèo quá nên tôi không biết ghép cho ai nhé!")
-        else {
-        var tle = Math.floor(Math.random() * 101);
+module.exports.config = {
+    name: "ghép",
+    version: "1.0.1",
+    hasPermssion: 0,
+    credits: "CatalizCS",
+    description: "Ghép đôi với những người trong nhóm",
+    commandCategory: "Làm trò con bò 🐮",
+    cooldowns: 5,
+    dependencies: {
+        "axios": "",
+        "fs-extra": ""
+    }
+}
 
-        var namee = (await Users.getData(event.senderID)).name
+module.exports.run = async({ event, api, Currencies, args }) => {
+    const axios = global.nodemodule["axios"];
+    const { writeFileSync, createReadStream } = global.nodemodule["fs-extra"];
+    const { threadID, messageID, senderID } = event;
 
-        let loz = await api.getThreadInfo(event.threadID);
-        var emoji = loz.participantIDs;
-        var id = emoji[Math.floor(Math.random() * emoji.length)];
-        /*let data = await api.getUserInfo(id);*/
-        
-        var name = (await Users.getData(id)).name
+    Array.prototype.random = function() { return this[Math.floor((Math.random() * this.length))]; };
 
-        /*var sex = await data[id].gender;*/
-        var arraytag = [];
-                arraytag.push({id: event.senderID, tag: namee});
-                arraytag.push({id: id, tag: name});
+    async function getDataThread(threadID) {
+        try {
+            var threadInfo = await api.getThreadInfo(threadID);
+            return threadInfo.participantIDs.filter(item => item != api.getCurrentUserID() || item != senderID);
+        } catch (e) {
+            console.log(e);
+            return api.sendMessage("Không thể lấy thông tin của nhóm!", threadID, messageID);
+        }
+    }
 
-        /*var gender = sex == 2 ? "Nam🧑" : sex == 1 ? "Nữ👩‍🦰" : "mèo méo meo mèo meowww";*/
-        let Avatar = (await axios.get( `https://le31.glitch.me/avt?q=${id}`, { responseType: "arraybuffer" } )).data;
-            fs.writeFileSync( __dirname + "/cache/avt.png", Buffer.from(Avatar, "utf-8") );
-        let Avatar2 = (await axios.get( `https://le31.glitch.me/avt?q=${event.senderID}`, { responseType: "arraybuffer" } )).data;
-            fs.writeFileSync( __dirname + "/cache/avt2.png", Buffer.from(Avatar2, "utf-8") );
-        var imglove = [];
-              imglove.push(fs.createReadStream(__dirname + "/cache/avt.png"));
-              imglove.push(fs.createReadStream(__dirname + "/cache/avt2.png"));
-        var msg = {body: `⚡️Ghép đôi thành công!\n⚡️Tỉ lệ hợp đôi: ${tle}%\n`+namee+" "+"💓"+" "+name, mentions: arraytag, attachment: imglove}
-        return api.sendMessage(msg, event.threadID, event.messageID)
-      }
-};
+    async function getUserInfo(userID) {
+        try {
+            const userInfo = await api.getUserInfo(userID);
+            return { name: userInfo[userID].name, gender: userInfo[userID].gender };
+        } catch (e) {
+            console.log(e);
+            return api.sendMessage("Không thể lấy thông tin của người dùng!", threadID, messageID);
+        }
+    }
+
+    async function getAvatarUser(userID) {
+        try {
+            const avatar = (await axios.get(`https://graph.facebook.com/${userID}/picture?width=512&height=512&access_token=170440784240186|bc82258eaaf93ee5b9f577a8d401bfc9`, { responseType: "arraybuffer" })).data;
+            writeFileSync(__dirname + `/cache/${userID}.png`, Buffer.from(avatar, "utf-8"));
+            return createReadStream(__dirname + `/cache/${userID}.png`);
+        } catch (e) {
+            console.log(e);
+            return api.sendMessage("Không thể lấy ảnh đại diện của người dùng!", threadID, messageID);
+        }
+    }
+
+    const emoji = ["♥️", "❤️", "💛", "💚", "💙", "💜", "🖤", "💖", "💝", "💓", "💘", "💍"].random();
+
+    const tl = ['21%', '67%', '19%', '37%', '17%', '96%', '52%', '62%', '76%', '83%', '100%', '99%', "0%", "48%"].random();
+
+    var data = await Currencies.getData(senderID);
+    var money = data.money;
+
+    if (money < 0) {
+        api.sendMessage("Bạn cần 1000 đô cho 1 lần ghép hãy tích cực làm việc hoặc xin admin bot!\nCó làm mới có ăn🤑", threadID, messageID)
+    } else {
+
+        try {
+            const threadInfo = await getDataThread(threadID);
+            const userIDRandom = threadInfo[Math.floor(Math.random() * threadInfo.length)];
+
+            const userData = await getUserInfo(senderID);
+            const userDataRandom = await getUserInfo(userIDRandom);
+
+
+            const avatarPath = await getAvatarUser(senderID);
+            const avatarPathRandom = await getAvatarUser(userIDRandom);
+
+            api.changeNickname(`${(userData.gender == 2) ? "Vợ của" : (userData.gender == 1) ? "Chồng của" : "Bêđê"} ${userData.name} ${emoji}`, threadID, userIDRandom);
+            api.changeNickname(`${(userData.gender == 2) ? "Chồng của" : (userData.gender == 1) ? "Vợ của" : "Bêđê"} ${userDataRandom.name} ${emoji}`, threadID, senderID);
+
+            Currencies.setData(senderID, options = { money: money - 0 });
+
+            return api.sendMessage({
+                body: `Hai bạn đã ghép đôi thành công\nTỉ lệ hợp đôi: ${tl}\n ${emoji} ${userData.name} - ${userDataRandom.name} ${emoji}`,
+                mentions: [{ tag: userData.name, id: senderID }, { tag: userDataRandom.name, id: userIDRandom }],
+                attachment: [avatarPath, avatarPathRandom],
+            }, threadID, messageID);
+
+
+        } catch (e) {
+            console.log(e);
+            return api.sendMessage("Không thể ghép đôi do module đã xảy ra lỗi!", threadID, messageID);
+        }
+
+
+    }
+
+
+
+}

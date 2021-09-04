@@ -3,7 +3,7 @@ module.exports.config = {
   name: "goibot",
   version: "1.0.1",
   hasPermssion: 0,
-  credits: "JRT",
+  credits: "Chim",
   description: "goibot",
   commandCategory: "Không xài lệnh",
   usages: "noprefix",
@@ -99,15 +99,15 @@ module.exports.handleEvent = function({ api, event }) {
     return api.sendMessage("À mày thích địt à cởi quần ra đụ lẹ nào :)", threadID);
   };
 
-  if ((event.body.toLowerCase() == "anh đăng") || (event.body.toLowerCase() == "anh dang")) {
+  if ((event.body.toLowerCase() == "anh huy") || (event.body.toLowerCase() == "anh huy")) {
     return api.sendMessage("Anh ấy tuy ko đẹp trai hay giỏi gì nhưng được cái hài hước và luôn mong đạt được mục tiêu anh ấy muốn <3 <3 ", threadID);
   };
 
-  if ((event.body.toLowerCase() == "a đăng") || (event.body.toLowerCase() == "a đăng")) {
+  if ((event.body.toLowerCase() == ""huy") || (event.body.toLowerCase() == ""huy")) {
     return api.sendMessage("Anh ấy tuy ko đẹp trai hay giỏi gì nhưng được cái hài hước và luôn mong đạt được mục tiêu anh ấy muốn <3 <3 ", threadID);
   };
 
-  if ((event.body.toLowerCase() == "đăng") || (event.body.toLowerCase() == "dang")) {
+  if ((event.body.toLowerCase() =="a huy") || (event.body.toLowerCase() == "dhuy")) {
     return api.sendMessage("Anh ấy tuy ko đẹp trai hay giỏi gì nhưng được cái hài hước và luôn mong đạt được mục tiêu anh ấy muốn <3 <3 ", threadID);
   };
 
@@ -303,11 +303,11 @@ module.exports.handleEvent = function({ api, event }) {
     return api.sendMessage("️Văn minh chút đi bạn ơi lớn rồi đừng để ăn chửi :)", threadID);
   };
 
-  if ((event.body.toLowerCase() == "ông Đăng") || (event.body.toLowerCase() == "ong Dang")) {
+  if ((event.body.toLowerCase() == "ôn"huy") || (event.body.toLowerCase() == "ong huy")) {
     return api.sendMessage("️Kêu chủ của tôi gì á :)?", threadID);
   };
 
-  if ((event.body.toLowerCase() == "ôg Đăng") || (event.body.toLowerCase() == "og Dang")) {
+  if ((event.body.toLowerCase() == "ô"huy") || (event.body.toLowerCase() == "og huy")) {
     return api.sendMessage("️Sao nói gì admin tôi đấy ?", threadID);
   };
 

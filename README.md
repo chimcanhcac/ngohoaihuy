@@ -1,13 +1,2 @@
 # miraiv2_Ngô hoài huy
-Bot dành cho messenger
-#Hướng dẫn cài đặt. 
-
-Git clone về máy hoặc tạo trên replit bằng link github.
-
-nhập vào cmd: npm i
-
-tạo appstate 
-
-sửa config
-
-nhập vào cmd: npm start
+vui lòng không reup dưới mọi hình thức

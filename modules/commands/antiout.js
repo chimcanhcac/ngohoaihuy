@@ -7,7 +7,7 @@ module.exports.config = {
     name: "antiout",
     version: "1.1.2",
     hasPermssion: 1,
-    credits: "ProCoderMew",
+    credits: "huychim",
     description: "Tự động add lại thành viên out chùa | Không chắc chắn là add lại được tất cả.",
     commandCategory: "group",
     usages: "antiout",
