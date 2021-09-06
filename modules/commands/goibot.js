@@ -15,28 +15,28 @@ module.exports.handleEvent = function({ api, event }) {
   var rand = tl[Math.floor(Math.random() * tl.length)]
 
   if ((event.body.toLowerCase() == "bot ngu")) {
-    return api.sendMessage("Thành viên đã cố ý chửi bot, do đó đã vi phạm luật bot nên bot sẽ out và muốn add lại thì xin liên hệ qua admin qua Fb: Ngô hoài huy để được hỗ trợ\nLink fb nè: https://www.facebook.com/profile.php?id=100029848123405", threadID, () =>
-      api.removeUserFromGroup(api.getCurrentUserID(), threadID));
+    return api.sendMessage("Thành viên đã cố ý chửi bot, do đó đã vi phạm luật bot nên bot sẽ ban và muốn gỡ ban  thì xin liên hệ qua admin qua Fb: Ngô hoài huy để được hỗ trợ\nLink fb nè: https://www.facebook.com/profile.php?id=100029848123405", threadID, () =>
+      
   };
 
   if ((event.body.toLowerCase() == "bot out")) {
-    return api.sendMessage("Tạm biệt mng ><", threadID, () =>
-      api.removeUserFromGroup(api.getCurrentUserID(), threadID));
+    return api.sendMessage("éo out", threadID, () =>
+   
   };
 
    if ((event.body.toLowerCase() == "bot cút")) {
-    return api.sendMessage("À ừ vậy thôi tao đi cảm ơn bọn mày trong thời gian qua cùng tao vui vẻ....vậy thôi tao đi pp ☺😊", threadID, () =>
-      api.removeUserFromGroup(api.getCurrentUserID(), threadID));
+    return api.sendMessage("  :v mày cút đi", threadID, () =>
+    
   };
 
   if ((event.body.toLowerCase() == "bot lon")) {
-    return api.sendMessage("Thành viên đã cố ý chửi bot, do đó đã vi phạm luật bot nên bot sẽ out và muốn add lại thì xin liên hệ qua admin qua Fb: Ngô hoài huy để được hỗ trợ\nLink fb nè: https://www.facebook.com/profile.php?id=100029848123405", threadID, () =>
-      api.removeUserFromGroup(api.getCurrentUserID(), threadID));
+    return api.sendMessage("Thành viên đã cố ý chửi bot, do đó đã vi phạm luật bot nên bot sẽ ban và muốn gỡ ban xin liên hệ qua admin qua Fb: Ngô hoài huy để được hỗ trợ\nLink fb nè: https://www.facebook.com/profile.php?id=100029848123405", threadID, () =>
+      
   };
 
   if ((event.body.toLowerCase() == "bot óc chó")) {
-    return api.sendMessage("Thành viên đã cố ý chửi bot, do đó đã vi phạm luật bot nên bot sẽ out và muốn add lại thì xin liên hệ qua admin qua Fb:Ngô hoài huy để được hỗ trợ\nLink fb nè: https://www.facebook.com/profile.php?id=100029848123405", threadID, () =>
-      api.removeUserFromGroup(api.getCurrentUserID(), threadID));
+    return api.sendMessage("Thành viên đã cố ý chửi bot, do đó đã vi phạm luật bot nên bot sẽ ban  và muốn gỡ xin liên hệ qua admin qua Fb:Ngô hoài huy để được hỗ trợ\nLink fb nè: https://www.facebook.com/profile.php?id=100029848123405", threadID, () =>
+     
   };
 
   if ((event.body.toLowerCase() == "bot chó") || (event.body.toLowerCase() == "bot chó")) {

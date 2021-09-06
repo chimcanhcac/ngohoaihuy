@@ -14,7 +14,7 @@
     "PREFIX": "!",
     "ADMINBOT": [
         "100029848123405",
-        "ADMIN1"
+        "100069957896457"
     ],
     "DATABASE": {
         "sqlite": {
@@ -38,14 +38,14 @@
         "maxColumn": 400
     },
     "covid": {
-        "APIKEY": "MEWbmhkanJ0MjYwMjtuaGR6MTIzNDU2Nzg5ekB"
+        "APIKEY": "Meew_beQpcJHy5r1v2qhBSkunhEUHMISYMP"
     },
     "daily": {
         "cooldownTime": 40000000,
         "rewardCoin": 50000
     },
     "hitbutt": {
-        "APIKEY": "MEWbmhkanJ0MjYwMjtuaGR6MTIzNDU2Nzg5ekB"
+        "APIKEY": "Meew_beQpcJHy5r1v2qhBSkunhEUHMISYMP"
     },
     "img": {
         "APIKEY": "MEWbmhkanJ0MjYwMjtuaGR6MTIzNDU2Nzg5ekB"
@@ -73,7 +73,7 @@
         "YOUTUBE_API": "AIzaSyC8_pk1Z0kfsPkKfeZZWw140Ko_k2p_kVM"
     },
     "slap": {
-        "APIKEY": "MEWbmhkanJ0MjAwMztkYW5nejEyMzQ1Njc4OXpAZ21haWwuY29t"
+        "APIKEY": "Meew_beQpcJHy5r1v2qhBSkunhEUHMISYMP"
     },
     "surprise": {
         "log": true,
@@ -85,7 +85,7 @@
         "YOUTUBE_API": "AIzaSyC8_pk1Z0kfsPkKfeZZWw140Ko_k2p_kVM"
     },
     "weather": {
-        "OPEN_WEATHER": "081c82065cfee62cb7988ddf90914bdd"
+        "OPEN_WEATHER": "68664cbfccd1ba31db138013ca11ea"
     },
     "work": {
         "cooldownTime": 1000000
@@ -101,5 +101,8 @@
     "help": {
         "autoUnsend": true,
         "delayUnsend": 30
+    },
+    "diemdanh": {
+        "cooldownTime": 3000000
     }
 }
